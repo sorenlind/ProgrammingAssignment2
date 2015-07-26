@@ -25,8 +25,8 @@ makeCacheMatrix <- function(x = matrix()) {
 ## Returns the inverse for specified special "matrix", x.
 ## If a cached inverse is available, the cached value will be used without need for calculating it again. If a cached inverse is not
 ## available, it will be calculate and stored for later use.
-cacheSolve <- function(specialMatrix, ...) {
-  inverse <- specialMatrix$getinverse()
+cacheSolve <- function(x, ...) {
+  inverse <- x$getinverse()
   
   # Use cached inverse if available
   if(!is.null(inverse)) {
@@ -35,8 +35,8 @@ cacheSolve <- function(specialMatrix, ...) {
   }
   
   # No cached inverse was available, so inverse will be calculated and cached for later use.
-  matrix <- specialMatrix$get()
+  matrix <- x$get()
   inverse <- solve(matrix)
-  specialMatrix$setinverse(inverse)
+  x$setinverse(inverse)
   inverse
 }
